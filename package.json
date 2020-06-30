@@ -1,0 +1,22 @@
+{
+  "name": "sort-utils",
+  "version": "1.0.0",
+  "description": "Generic typesafe utility functions for sorting arrays",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcvanhassel/sort-utils.git"
+  },
+  "keywords": [
+    "TypeScript"
+  ],
+  "author": "Maurits van Hassel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mcvanhassel/sort-utils/issues"
+  },
+  "homepage": "https://github.com/mcvanhassel/sort-utils#readme"
+}
