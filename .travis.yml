@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+  - 12
+
+branches:
+  only:
+    - master
+
+addons:
+  chrome: stable
+  sonarcloud:
+    organization: ${SONAR_ORGANIZATION}
+
+script:
+  - npm run lint
+  - npm test
+  - sonar-scanner -Dsonar.projectKey=${SONAR_PROJECT} -Dsonar.login=${SONAR_TOKEN}
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -t ${CODECOV_TOKEN}
+
+notifications:
+  email:
+    on_failure: always
+    on_success: always
