@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/mcvanhassel/sort-utils/issues"
   },
-  "homepage": "https://github.com/mcvanhassel/sort-utils#readme"
+  "homepage": "https://github.com/mcvanhassel/sort-utils#readme",
+  "devDependencies": {
+    "typescript": "^3.9.5"
+  }
 }
