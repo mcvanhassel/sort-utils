@@ -1,6 +1,6 @@
 export function sortAscending<T>(items: T[]) {
-  if (items === null || items === undefined) {
-    throw new Error();
+  if (items === null || items === undefined || !Array.isArray(items)) {
+    throw new Error('Argument "items" should be provided as an array');
   }
 }
 

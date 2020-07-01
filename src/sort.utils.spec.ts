@@ -6,8 +6,16 @@ describe('sort utils', () => {
       expect(sortAscending).toBeDefined();
     });
 
-    it('should throw an error when no input is provided', () => {
+    it('should throw an error when argument "items" is not provided', () => {
       expect(sortAscending).toThrow();
+    });
+
+    it('should throw an error when argument "items" is not an array', () => {
+      expect(() => sortAscending(123 as any)).toThrow('Argument "items" should be provided as an array');
+    });
+
+    it('should not throw an error when argument "items" is an array', () => {
+      expect(() => sortAscending([1, 2, 3])).not.toThrow();
     });
   });
 
