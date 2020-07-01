@@ -5,6 +5,10 @@ describe('sort utils', () => {
     it('is defined', () => {
       expect(sortAscending).toBeDefined();
     });
+
+    it('should throw an error when no input is provided', () => {
+      expect(sortAscending).toThrow();
+    });
   });
 
   describe('sort descending', () => {
