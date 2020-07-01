@@ -17,6 +17,12 @@ describe('sort utils', () => {
     it('should not throw an error when argument "items" is an array', () => {
       expect(() => sortAscending([1, 2, 3])).not.toThrow();
     });
+
+    it('should return an array', () => {
+      const result = sortAscending([]);
+
+      expect(result).toBeInstanceOf(Array);
+    });
   });
 
   describe('sort descending', () => {
