@@ -187,6 +187,19 @@ describe('sort utils', () => {
 
       expect(result).toEqual(expected);
     });
+
+    it('should not mutate input argument "items"', () => {
+      const items: Item[] = [
+        { id: 2, title: 'a', valid: true },
+        { id: 1, title: 'b', valid: false },
+      ];
+      sortAscendingBy(items, 'id');
+
+      expect(items).toEqual([
+        { id: 2, title: 'a', valid: true },
+        { id: 1, title: 'b', valid: false },
+      ]);
+    });
   });
 
   describe('sort descending by', () => {
@@ -228,6 +241,19 @@ describe('sort utils', () => {
       const result = sortDescendingBy(items, 'title');
 
       expect(result).toEqual(expected);
+    });
+
+    it('should not mutate input argument "items"', () => {
+      const items: Item[] = [
+        { id: 2, title: 'a', valid: true },
+        { id: 1, title: 'b', valid: false },
+      ];
+      sortDescendingBy(items, 'title');
+
+      expect(items).toEqual([
+        { id: 2, title: 'a', valid: true },
+        { id: 1, title: 'b', valid: false },
+      ]);
     });
   });
 });
