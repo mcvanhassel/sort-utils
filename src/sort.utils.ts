@@ -1,4 +1,5 @@
 type SortableType = string | boolean | number | bigint;
+type SortableProperty<T> = { [P in keyof T]: T[P] extends SortableType ? P : never }[keyof T];
 
 enum SortDirection {
   Ascending = 1,
@@ -13,14 +14,14 @@ export const sortDescending = <T extends SortableType>(items: T[]): T[] => {
   return sort(items, SortDirection.Descending);
 };
 
-export function sortAscendingBy<T>(items: T[], property: keyof T) {
+export function sortAscendingBy<T>(items: T[], property: SortableProperty<T>) {
   validateItems(items);
   validateProperty(property);
 
   return [];
 }
 
-export function sortDescendingBy<T>(items: T[], property: keyof T) {
+export function sortDescendingBy<T>(items: T[], property: SortableProperty<T>) {
   validateItems(items);
   validateProperty(property);
 
@@ -33,7 +34,7 @@ function validateItems<T>(items: T[]): void {
   }
 }
 
-function validateProperty<T>(property: keyof T): void {
+function validateProperty<T>(property: SortableProperty<T>): void {
   if (property === null || property === undefined || property.toString().trim() === '') {
     throw new Error('Argument "property" should be provided');
   }

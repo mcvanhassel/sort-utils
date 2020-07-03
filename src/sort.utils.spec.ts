@@ -157,19 +157,19 @@ describe('sort utils', () => {
     });
 
     it('should throw an error when argument "property" is not provided', () => {
-      expect(() => sortAscendingBy([], ' ')).toThrow();
+      expect(() => sortAscendingBy<Item>([], ' ' as any)).toThrow();
     });
 
     it('should throw an error when argument "items" is not an array', () => {
-      expect(() => sortAscendingBy(123 as any, 'prop')).toThrow('Argument "items" should be provided as an array');
+      expect(() => sortAscendingBy<Item>(123 as any, 'id')).toThrow('Argument "items" should be provided as an array');
     });
 
     it('should not throw an error when argument "items" is an array', () => {
-      expect(() => sortAscendingBy([], 'prop')).not.toThrow();
+      expect(() => sortAscendingBy<Item>([], 'id')).not.toThrow();
     });
 
     it('should return an array', () => {
-      const result = sortAscendingBy([], 'prop');
+      const result = sortAscendingBy<Item>([], 'id');
 
       expect(result).toBeInstanceOf(Array);
     });
@@ -185,21 +185,27 @@ describe('sort utils', () => {
     });
 
     it('should throw an error when argument "property" is not provided', () => {
-      expect(() => sortDescendingBy([], ' ')).toThrow();
+      expect(() => sortDescendingBy<Item>([], ' ' as any)).toThrow();
     });
 
     it('should throw an error when argument "items" is not an array', () => {
-      expect(() => sortDescendingBy(123 as any, 'prop')).toThrow('Argument "items" should be provided as an array');
+      expect(() => sortDescendingBy<Item>(123 as any, 'id')).toThrow('Argument "items" should be provided as an array');
     });
 
     it('should not throw an error when argument "items" is an array', () => {
-      expect(() => sortDescendingBy([], 'prop')).not.toThrow();
+      expect(() => sortDescendingBy<Item>([], 'id')).not.toThrow();
     });
 
     it('should return an array', () => {
-      const result = sortDescendingBy([], 'prop');
+      const result = sortDescendingBy<Item>([], 'id');
 
       expect(result).toBeInstanceOf(Array);
     });
   });
 });
+
+interface Item {
+  id: number;
+  title: string;
+  valid: boolean;
+}
