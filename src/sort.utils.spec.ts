@@ -38,6 +38,13 @@ describe('sort utils', () => {
       expect(result).toEqual([1, 2, 3, 10]);
     });
 
+    it('should sort boolean items', () => {
+      const items = [true, false, false, true, false];
+      const result = sortAscending(items);
+
+      expect(result).toEqual([false, false, false, true, true]);
+    });
+
     it('should not mutate input argument "items"', () => {
       const items = ['c', 'a', 'b'];
       sortAscending(items);
