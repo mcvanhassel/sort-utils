@@ -38,6 +38,13 @@ describe('sort utils', () => {
       expect(result).toEqual([1, 2, 3, 10]);
     });
 
+    it('should sort bigint items', () => {
+      const items = [BigInt('90071992547409990'), BigInt('1007199254740999'), BigInt('9007199254740999')];
+      const result = sortAscending(items);
+
+      expect(result).toEqual([BigInt('1007199254740999'), BigInt('9007199254740999'), BigInt('90071992547409990')]);
+    });
+
     it('should sort boolean items', () => {
       const items = [true, false, false, true, false];
       const result = sortAscending(items);
