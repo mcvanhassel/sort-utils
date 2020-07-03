@@ -15,18 +15,12 @@ export const sortDescending = <T extends SortableType>(items: T[]): T[] => {
   return sort(items, SortDirection.Descending);
 };
 
-export function sortAscendingBy<T extends SortableObject<T>>(items: T[], property: SortableProperty<T>) {
-  validateItems(items);
-  validateProperty(property);
-
-  return [];
+export function sortAscendingBy<T extends SortableObject<T>>(items: T[], property: SortableProperty<T>): T[] {
+  return sortBy(items, property, SortDirection.Ascending);
 }
 
-export function sortDescendingBy<T extends SortableObject<T>>(items: T[], property: SortableProperty<T>) {
-  validateItems(items);
-  validateProperty(property);
-
-  return [];
+export function sortDescendingBy<T extends SortableObject<T>>(items: T[], property: SortableProperty<T>): T[] {
+  return sortBy(items, property, SortDirection.Descending);
 }
 
 function validateItems<T>(items: T[]): void {
@@ -45,6 +39,13 @@ function sort<T extends SortableType>(items: T[], direction: SortDirection): T[]
   validateItems(items);
 
   return [...items].sort((a, b) => direction * compare(a, b));
+}
+
+function sortBy<T extends SortableObject<T>>(items: T[], property: SortableProperty<T>, direction: SortDirection) {
+  validateItems(items);
+  validateProperty(property);
+
+  return [...items].sort((a, b) => direction * compare(a[property], b[property]));
 }
 
 function compare(a: SortableType, b: SortableType): number {

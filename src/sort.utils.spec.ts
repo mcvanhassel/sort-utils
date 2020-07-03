@@ -173,6 +173,20 @@ describe('sort utils', () => {
 
       expect(result).toBeInstanceOf(Array);
     });
+
+    it('should sort items by property', () => {
+      const items: Item[] = [
+        { id: 2, title: 'a', valid: true },
+        { id: 1, title: 'b', valid: false },
+      ];
+      const expected: Item[] = [
+        { id: 1, title: 'b', valid: false },
+        { id: 2, title: 'a', valid: true },
+      ];
+      const result = sortAscendingBy(items, 'id');
+
+      expect(result).toEqual(expected);
+    });
   });
 
   describe('sort descending by', () => {
@@ -200,6 +214,20 @@ describe('sort utils', () => {
       const result = sortDescendingBy<Item>([], 'id');
 
       expect(result).toBeInstanceOf(Array);
+    });
+
+    it('should sort items by property', () => {
+      const items: Item[] = [
+        { id: 2, title: 'a', valid: true },
+        { id: 1, title: 'b', valid: false },
+      ];
+      const expected: Item[] = [
+        { id: 1, title: 'b', valid: false },
+        { id: 2, title: 'a', valid: true },
+      ];
+      const result = sortDescendingBy(items, 'title');
+
+      expect(result).toEqual(expected);
     });
   });
 });
