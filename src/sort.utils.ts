@@ -1,5 +1,6 @@
 type SortableType = string | boolean | number | bigint;
 type SortableProperty<T> = { [P in keyof T]: T[P] extends SortableType ? P : never }[keyof T];
+type SortableObject<T> = Pick<T, SortableProperty<T>>;
 
 enum SortDirection {
   Ascending = 1,
@@ -14,14 +15,14 @@ export const sortDescending = <T extends SortableType>(items: T[]): T[] => {
   return sort(items, SortDirection.Descending);
 };
 
-export function sortAscendingBy<T>(items: T[], property: SortableProperty<T>) {
+export function sortAscendingBy<T extends SortableObject<T>>(items: T[], property: SortableProperty<T>) {
   validateItems(items);
   validateProperty(property);
 
   return [];
 }
 
-export function sortDescendingBy<T>(items: T[], property: SortableProperty<T>) {
+export function sortDescendingBy<T extends SortableObject<T>>(items: T[], property: SortableProperty<T>) {
   validateItems(items);
   validateProperty(property);
 
