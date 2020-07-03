@@ -1,4 +1,4 @@
-import { sortAscending, sortDescending } from './sort.utils';
+import { sortAscending, sortAscendingBy, sortDescending, sortDescendingBy } from './sort.utils';
 
 describe('sort utils', () => {
   describe('sort ascending', () => {
@@ -144,6 +144,18 @@ describe('sort utils', () => {
       const result = items.map(sortDescending);
 
       expect(result).toEqual([['c', 'b', 'a']]);
+    });
+  });
+
+  describe('sort ascending by', () => {
+    it('is defined', () => {
+      expect(sortAscendingBy).toBeDefined();
+    });
+  });
+
+  describe('sort descending by', () => {
+    it('is defined', () => {
+      expect(sortDescendingBy).toBeDefined();
     });
   });
 });

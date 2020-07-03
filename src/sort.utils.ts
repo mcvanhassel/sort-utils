@@ -13,6 +13,10 @@ export const sortDescending = <T extends SortableType>(items: T[]): T[] => {
   return sort(items, SortDirection.Descending);
 };
 
+export function sortAscendingBy() {}
+
+export function sortDescendingBy() {}
+
 function validateItems<T>(items: T[]): void {
   if (items === null || items === undefined || !Array.isArray(items)) {
     throw new Error('Argument "items" should be provided as an array');
