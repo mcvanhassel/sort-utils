@@ -6,14 +6,10 @@ enum SortDirection {
 }
 
 export const sortAscending = <T extends SortableType>(items: T[]): T[] => {
-  validateItems(items);
-
   return sort(items, SortDirection.Ascending);
 };
 
 export const sortDescending = <T extends SortableType>(items: T[]): T[] => {
-  validateItems(items);
-
   return sort(items, SortDirection.Descending);
 };
 
@@ -24,6 +20,8 @@ function validateItems<T>(items: T[]): void {
 }
 
 function sort<T extends SortableType>(items: T[], direction: SortDirection): T[] {
+  validateItems(items);
+
   return [...items].sort((a, b) => direction * compare(a, b));
 }
 
