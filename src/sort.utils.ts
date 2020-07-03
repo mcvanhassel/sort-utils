@@ -3,7 +3,7 @@ export function sortAscending<T>(items: T[]): T[] {
     throw new Error('Argument "items" should be provided as an array');
   }
 
-  return [];
+  return items.sort();
 }
 
 export function sortDescending() {}

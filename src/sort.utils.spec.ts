@@ -23,6 +23,13 @@ describe('sort utils', () => {
 
       expect(result).toBeInstanceOf(Array);
     });
+
+    it('should sort string items', () => {
+      const items = ['c', 'a', 'b'];
+      const result = sortAscending(items);
+
+      expect(result).toEqual(['a', 'b', 'c']);
+    });
   });
 
   describe('sort descending', () => {
