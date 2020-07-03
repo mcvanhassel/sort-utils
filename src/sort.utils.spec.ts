@@ -151,11 +151,35 @@ describe('sort utils', () => {
     it('is defined', () => {
       expect(sortAscendingBy).toBeDefined();
     });
+
+    it('should throw an error when argument "items" is not provided', () => {
+      expect(sortAscendingBy).toThrow();
+    });
+
+    it('should throw an error when argument "items" is not an array', () => {
+      expect(() => sortAscendingBy(123 as any)).toThrow('Argument "items" should be provided as an array');
+    });
+
+    it('should not throw an error when argument "items" is an array', () => {
+      expect(() => sortAscendingBy([])).not.toThrow();
+    });
   });
 
   describe('sort descending by', () => {
     it('is defined', () => {
       expect(sortDescendingBy).toBeDefined();
+    });
+
+    it('should throw an error when argument "items" is not provided', () => {
+      expect(sortDescendingBy).toThrow();
+    });
+
+    it('should throw an error when argument "items" is not an array', () => {
+      expect(() => sortDescendingBy(123 as any)).toThrow('Argument "items" should be provided as an array');
+    });
+
+    it('should not throw an error when argument "items" is an array', () => {
+      expect(() => sortDescendingBy([])).not.toThrow();
     });
   });
 });
