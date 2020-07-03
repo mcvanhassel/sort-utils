@@ -31,6 +31,13 @@ describe('sort utils', () => {
       expect(result).toEqual(['a', 'b', 'c']);
     });
 
+    it('should sort number items', () => {
+      const items = [3, 10, 2, 1];
+      const result = sortAscending(items);
+
+      expect(result).toEqual([1, 2, 3, 10]);
+    });
+
     it('should not mutate input argument "items"', () => {
       const items = ['c', 'a', 'b'];
       sortAscending(items);
