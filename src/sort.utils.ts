@@ -15,10 +15,14 @@ export const sortDescending = <T extends SortableType>(items: T[]): T[] => {
 
 export function sortAscendingBy<T>(items: T[]) {
   validateItems(items);
+
+  return [];
 }
 
 export function sortDescendingBy<T>(items: T[]) {
   validateItems(items);
+
+  return [];
 }
 
 function validateItems<T>(items: T[]): void {

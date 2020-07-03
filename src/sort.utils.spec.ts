@@ -163,6 +163,12 @@ describe('sort utils', () => {
     it('should not throw an error when argument "items" is an array', () => {
       expect(() => sortAscendingBy([])).not.toThrow();
     });
+
+    it('should return an array', () => {
+      const result = sortAscendingBy([]);
+
+      expect(result).toBeInstanceOf(Array);
+    });
   });
 
   describe('sort descending by', () => {
@@ -180,6 +186,12 @@ describe('sort utils', () => {
 
     it('should not throw an error when argument "items" is an array', () => {
       expect(() => sortDescendingBy([])).not.toThrow();
+    });
+
+    it('should return an array', () => {
+      const result = sortDescendingBy([]);
+
+      expect(result).toBeInstanceOf(Array);
     });
   });
 });
