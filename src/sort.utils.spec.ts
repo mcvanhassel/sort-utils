@@ -157,19 +157,19 @@ describe('sort utils', () => {
     });
 
     it('should throw an error when argument "property" is not provided', () => {
-      expect(() => sortAscendingBy<Item>([], ' ' as any)).toThrow();
+      expect(() => sortAscendingBy<Item>(' ' as any)([])).toThrow();
     });
 
     it('should throw an error when argument "items" is not an array', () => {
-      expect(() => sortAscendingBy<Item>(123 as any, 'id')).toThrow('Argument "items" should be provided as an array');
+      expect(() => sortAscendingBy<Item>('id')(123 as any)).toThrow('Argument "items" should be provided as an array');
     });
 
     it('should not throw an error when argument "items" is an array', () => {
-      expect(() => sortAscendingBy<Item>([], 'id')).not.toThrow();
+      expect(() => sortAscendingBy<Item>('id')([])).not.toThrow();
     });
 
     it('should return an array', () => {
-      const result = sortAscendingBy<Item>([], 'id');
+      const result = sortAscendingBy<Item>('id')([]);
 
       expect(result).toBeInstanceOf(Array);
     });
@@ -183,7 +183,7 @@ describe('sort utils', () => {
         { id: 1, title: 'b', valid: false },
         { id: 2, title: 'a', valid: true },
       ];
-      const result = sortAscendingBy(items, 'id');
+      const result = sortAscendingBy('id')(items);
 
       expect(result).toEqual(expected);
     });
@@ -193,11 +193,28 @@ describe('sort utils', () => {
         { id: 2, title: 'a', valid: true },
         { id: 1, title: 'b', valid: false },
       ];
-      sortAscendingBy(items, 'id');
+      sortAscendingBy('id')(items);
 
       expect(items).toEqual([
         { id: 2, title: 'a', valid: true },
         { id: 1, title: 'b', valid: false },
+      ]);
+    });
+
+    it('should be usable with point-free style', () => {
+      const items: Item[][] = [
+        [
+          { id: 2, title: 'a', valid: true },
+          { id: 1, title: 'b', valid: false },
+        ],
+      ];
+      const result = items.map(sortAscendingBy('id'));
+
+      expect(result).toEqual([
+        [
+          { id: 1, title: 'b', valid: false },
+          { id: 2, title: 'a', valid: true },
+        ],
       ]);
     });
   });
@@ -212,19 +229,19 @@ describe('sort utils', () => {
     });
 
     it('should throw an error when argument "property" is not provided', () => {
-      expect(() => sortDescendingBy<Item>([], ' ' as any)).toThrow();
+      expect(() => sortDescendingBy<Item>(' ' as any)([])).toThrow();
     });
 
     it('should throw an error when argument "items" is not an array', () => {
-      expect(() => sortDescendingBy<Item>(123 as any, 'id')).toThrow('Argument "items" should be provided as an array');
+      expect(() => sortDescendingBy<Item>('id')(123 as any)).toThrow('Argument "items" should be provided as an array');
     });
 
     it('should not throw an error when argument "items" is an array', () => {
-      expect(() => sortDescendingBy<Item>([], 'id')).not.toThrow();
+      expect(() => sortDescendingBy<Item>('id')([])).not.toThrow();
     });
 
     it('should return an array', () => {
-      const result = sortDescendingBy<Item>([], 'id');
+      const result = sortDescendingBy<Item>('id')([]);
 
       expect(result).toBeInstanceOf(Array);
     });
@@ -238,7 +255,7 @@ describe('sort utils', () => {
         { id: 1, title: 'b', valid: false },
         { id: 2, title: 'a', valid: true },
       ];
-      const result = sortDescendingBy(items, 'title');
+      const result = sortDescendingBy('title')(items);
 
       expect(result).toEqual(expected);
     });
@@ -248,11 +265,28 @@ describe('sort utils', () => {
         { id: 2, title: 'a', valid: true },
         { id: 1, title: 'b', valid: false },
       ];
-      sortDescendingBy(items, 'title');
+      sortDescendingBy('title')(items);
 
       expect(items).toEqual([
         { id: 2, title: 'a', valid: true },
         { id: 1, title: 'b', valid: false },
+      ]);
+    });
+
+    it('should be usable with point-free style', () => {
+      const items: Item[][] = [
+        [
+          { id: 2, title: 'a', valid: true },
+          { id: 1, title: 'b', valid: false },
+        ],
+      ];
+      const result = items.map(sortDescendingBy('title'));
+
+      expect(result).toEqual([
+        [
+          { id: 1, title: 'b', valid: false },
+          { id: 2, title: 'a', valid: true },
+        ],
       ]);
     });
   });

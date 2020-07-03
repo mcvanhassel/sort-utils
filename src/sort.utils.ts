@@ -15,13 +15,13 @@ export const sortDescending = <T extends SortableType>(items: T[]): T[] => {
   return sort(items, SortDirection.Descending);
 };
 
-export function sortAscendingBy<T extends SortableObject<T>>(items: T[], property: SortableProperty<T>): T[] {
-  return sortBy(items, property, SortDirection.Ascending);
-}
+export const sortAscendingBy = <T extends SortableObject<T>>(property: SortableProperty<T>): ((items: T[]) => T[]) => {
+  return sortBy(property, SortDirection.Ascending);
+};
 
-export function sortDescendingBy<T extends SortableObject<T>>(items: T[], property: SortableProperty<T>): T[] {
-  return sortBy(items, property, SortDirection.Descending);
-}
+export const sortDescendingBy = <T extends SortableObject<T>>(property: SortableProperty<T>): ((items: T[]) => T[]) => {
+  return sortBy(property, SortDirection.Descending);
+};
 
 function validateItems<T>(items: T[]): void {
   if (items === null || items === undefined || !Array.isArray(items)) {
@@ -41,11 +41,14 @@ function sort<T extends SortableType>(items: T[], direction: SortDirection): T[]
   return [...items].sort((a, b) => direction * compare(a, b));
 }
 
-function sortBy<T extends SortableObject<T>>(items: T[], property: SortableProperty<T>, direction: SortDirection) {
-  validateItems(items);
+function sortBy<T extends SortableObject<T>>(property: SortableProperty<T>, direction: SortDirection): (items: T[]) => T[] {
   validateProperty(property);
 
-  return [...items].sort((a, b) => direction * compare(a[property], b[property]));
+  return (items: T[]): T[] => {
+    validateItems(items);
+
+    return [...items].sort((a, b) => direction * compare(a[property], b[property]));
+  };
 }
 
 function compare(a: SortableType, b: SortableType): number {
