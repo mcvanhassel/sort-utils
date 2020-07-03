@@ -30,6 +30,13 @@ describe('sort utils', () => {
 
       expect(result).toEqual(['a', 'b', 'c']);
     });
+
+    it('should not mutate input argument "items"', () => {
+      const items = ['c', 'a', 'b'];
+      sortAscending(items);
+
+      expect(items).toEqual(['c', 'a', 'b']);
+    });
   });
 
   describe('sort descending', () => {
