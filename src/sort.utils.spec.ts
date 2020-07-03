@@ -65,6 +65,13 @@ describe('sort utils', () => {
 
       expect(items).toEqual(['c', 'a', 'b']);
     });
+
+    it('should be usable with point-free style', () => {
+      const items = [['c', 'a', 'b']];
+      const result = items.map(sortAscending);
+
+      expect(result).toEqual([['a', 'b', 'c']]);
+    });
   });
 
   describe('sort descending', () => {
@@ -130,6 +137,13 @@ describe('sort utils', () => {
       sortDescending(items);
 
       expect(items).toEqual(['c', 'a', 'b']);
+    });
+
+    it('should be usable with point-free style', () => {
+      const items = [['c', 'a', 'b']];
+      const result = items.map(sortDescending);
+
+      expect(result).toEqual([['c', 'b', 'a']]);
     });
   });
 });

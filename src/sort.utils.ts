@@ -5,17 +5,17 @@ enum SortDirection {
   Descending = -1,
 }
 
-export function sortAscending<T extends SortableType>(items: T[]): T[] {
+export const sortAscending = <T extends SortableType>(items: T[]): T[] => {
   validateItems(items);
 
   return sort(items, SortDirection.Ascending);
-}
+};
 
-export function sortDescending<T extends SortableType>(items: T[]): T[] {
+export const sortDescending = <T extends SortableType>(items: T[]): T[] => {
   validateItems(items);
 
   return sort(items, SortDirection.Descending);
-}
+};
 
 function validateItems<T>(items: T[]): void {
   if (items === null || items === undefined || !Array.isArray(items)) {
