@@ -156,16 +156,20 @@ describe('sort utils', () => {
       expect(sortAscendingBy).toThrow();
     });
 
+    it('should throw an error when argument "property" is not provided', () => {
+      expect(() => sortAscendingBy([], ' ')).toThrow();
+    });
+
     it('should throw an error when argument "items" is not an array', () => {
-      expect(() => sortAscendingBy(123 as any)).toThrow('Argument "items" should be provided as an array');
+      expect(() => sortAscendingBy(123 as any, 'prop')).toThrow('Argument "items" should be provided as an array');
     });
 
     it('should not throw an error when argument "items" is an array', () => {
-      expect(() => sortAscendingBy([])).not.toThrow();
+      expect(() => sortAscendingBy([], 'prop')).not.toThrow();
     });
 
     it('should return an array', () => {
-      const result = sortAscendingBy([]);
+      const result = sortAscendingBy([], 'prop');
 
       expect(result).toBeInstanceOf(Array);
     });
@@ -180,16 +184,20 @@ describe('sort utils', () => {
       expect(sortDescendingBy).toThrow();
     });
 
+    it('should throw an error when argument "property" is not provided', () => {
+      expect(() => sortDescendingBy([], ' ')).toThrow();
+    });
+
     it('should throw an error when argument "items" is not an array', () => {
-      expect(() => sortDescendingBy(123 as any)).toThrow('Argument "items" should be provided as an array');
+      expect(() => sortDescendingBy(123 as any, 'prop')).toThrow('Argument "items" should be provided as an array');
     });
 
     it('should not throw an error when argument "items" is an array', () => {
-      expect(() => sortDescendingBy([])).not.toThrow();
+      expect(() => sortDescendingBy([], 'prop')).not.toThrow();
     });
 
     it('should return an array', () => {
-      const result = sortDescendingBy([]);
+      const result = sortDescendingBy([], 'prop');
 
       expect(result).toBeInstanceOf(Array);
     });

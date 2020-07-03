@@ -13,14 +13,16 @@ export const sortDescending = <T extends SortableType>(items: T[]): T[] => {
   return sort(items, SortDirection.Descending);
 };
 
-export function sortAscendingBy<T>(items: T[]) {
+export function sortAscendingBy<T>(items: T[], property: keyof T) {
   validateItems(items);
+  validateProperty(property);
 
   return [];
 }
 
-export function sortDescendingBy<T>(items: T[]) {
+export function sortDescendingBy<T>(items: T[], property: keyof T) {
   validateItems(items);
+  validateProperty(property);
 
   return [];
 }
@@ -28,6 +30,12 @@ export function sortDescendingBy<T>(items: T[]) {
 function validateItems<T>(items: T[]): void {
   if (items === null || items === undefined || !Array.isArray(items)) {
     throw new Error('Argument "items" should be provided as an array');
+  }
+}
+
+function validateProperty<T>(property: keyof T): void {
+  if (property === null || property === undefined || property.toString().trim() === '') {
+    throw new Error('Argument "property" should be provided');
   }
 }
 
