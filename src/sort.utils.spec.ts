@@ -52,6 +52,13 @@ describe('sort utils', () => {
       expect(result).toEqual([false, false, false, true, true]);
     });
 
+    it('should sort string items with special characters', () => {
+      const items = ['ä', 'é', 'e', 'è', 'b', 'ü', 'a', 'u'];
+      const result = sortAscending(items);
+
+      expect(result).toEqual(['a', 'ä', 'b', 'e', 'é', 'è', 'u', 'ü']);
+    });
+
     it('should not mutate input argument "items"', () => {
       const items = ['c', 'a', 'b'];
       sortAscending(items);

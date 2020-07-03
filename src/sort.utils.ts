@@ -3,7 +3,7 @@ export function sortAscending<T>(items: T[]): T[] {
     throw new Error('Argument "items" should be provided as an array');
   }
 
-  return [...items].sort((a, b) => (a > b ? 1 : a < b ? -1 : 0));
+  return [...items].sort((a, b) => (typeof a === 'string' && typeof b === 'string' ? a.localeCompare(b) : a > b ? 1 : a < b ? -1 : 0));
 }
 
 export function sortDescending() {}
