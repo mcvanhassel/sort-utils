@@ -22,6 +22,15 @@
 
 Generic type-safe array sorting utility functions for TypeScript projects
 
+<!-- TOC -->
+
+- [Sort Ascending](#sort-ascending)
+- [Sort Descending](#sort-descending)
+- [Sort Ascending By Property](#sort-ascending-by-property)
+- [Sort Descending By Property](#sort-descending-by-property)
+
+<!-- /TOC -->
+
 ## Usage
 
 ### Sort Ascending
