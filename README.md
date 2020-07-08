@@ -1,6 +1,6 @@
-# sort-utils
+# Generic Array Sort Utilities for TypeScript
 
-Generic typesafe utility functions for sorting arrays
+Generic type-safe utility functions for sorting arrays
 
 [![GitHub](https://img.shields.io/github/license/mcvanhassel/sort-utils)](LICENSE)
 [![Travis (.org)](https://img.shields.io/travis/mcvanhassel/sort-utils)](https://travis-ci.org/github/mcvanhassel/sort-utils)
@@ -19,3 +19,67 @@ Generic typesafe utility functions for sorting arrays
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=mcvanhassel_sort-utils&metric=code_smells)](https://sonarcloud.io/dashboard?id=mcvanhassel_sort-utils)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=mcvanhassel_sort-utils&metric=sqale_index)](https://sonarcloud.io/dashboard?id=mcvanhassel_sort-utils)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=mcvanhassel_sort-utils&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=mcvanhassel_sort-utils)
+
+## Overview
+
+Generic type-safe array sorting utility functions for TypeScript projects
+
+## Usage
+
+### Sort Ascending
+
+```typescript
+const sortedItems = sortAscending(['è', 'c', 'é', 'e', 'a', 'd', 'b']); // ['a', 'b', 'c', 'd', 'e', 'é', 'è']
+```
+
+```typescript
+of([1, 10, 5]).pipe(map(sortAscending)).subscribe(); // [1, 5, 10]
+```
+
+### Sort Descending
+
+```typescript
+const sortedItems = sortDescending(['è', 'c', 'é', 'e', 'a', 'd', 'b']); // ['è', 'é', 'e', 'd', 'c', 'b', 'a']
+```
+
+```typescript
+of([false, true, false, true]).pipe(map(sortDescending)).subscribe(); // [true, true, false, false]
+```
+
+### Sort Ascending By Property
+
+```typescript
+const items: Item[] = [
+  { id: 2, title: 'a' },
+  { id: 1, title: 'b' },
+];
+const sortedItems = sortAscendingBy('id')(items); // [{ id: 1, title: 'b' }, { id: 2, title: 'a' }]
+```
+
+```typescript
+of([
+  { id: 2, title: 'a' },
+  { id: 1, title: 'b' },
+])
+  .pipe(map(sortAscendingBy('title')))
+  .subscribe(); // [{ id: 2, title: 'a' }, { id: 1, title: 'b' }]
+```
+
+### Sort Descending By Property
+
+```typescript
+const items: Item[] = [
+  { id: 2, title: 'a' },
+  { id: 1, title: 'b' },
+];
+const sortedItems = sortDescendingBy('id')(items); // [{ id: 2, title: 'a' }, { id: 1, title: 'b' }]
+```
+
+```typescript
+of([
+  { id: 2, title: 'a' },
+  { id: 1, title: 'b' },
+])
+  .pipe(map(sortDescendingBy('title')))
+  .subscribe(); // [{ id: 1, title: 'b' }, { id: 2, title: 'a' }]
+```
