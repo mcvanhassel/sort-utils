@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/mcvanhassel/sort-utils#readme",
   "devDependencies": {
-    "@types/jest": "^26.0.8",
+    "@types/jest": "^26.0.23",
     "jest": "^26.2.2",
     "ts-jest": "^26.1.4",
     "tslint": "^6.1.3",
