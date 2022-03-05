@@ -1,4 +1,4 @@
-import { sortAscending, sortAscendingBy, sortDescending, sortDescendingBy } from './sort.utils';
+import { sortAscending, sortAscendingBy, sortByMultiple, sortDescending, sortDescendingBy, SortDirection } from './sort.utils';
 
 describe('sort utils', () => {
   describe('sort ascending', () => {
@@ -286,6 +286,27 @@ describe('sort utils', () => {
         [
           { id: 1, title: 'b', valid: false },
           { id: 2, title: 'a', valid: true },
+        ],
+      ]);
+    });
+
+    it('should sort by multiple', () => {
+      const items: Item[][] = [
+        [
+          { id: 2, title: 'a', valid: true },
+          { id: 4, title: 'b', valid: false },
+          { id: 3, title: 'a', valid: true },
+          { id: 1, title: 'b', valid: false },
+        ],
+      ];
+      const result = items.map(sortByMultiple(['title', SortDirection.Ascending], ['id', SortDirection.Descending]));
+
+      expect(result).toEqual([
+        [
+          { id: 3, title: 'a', valid: true },
+          { id: 2, title: 'a', valid: true },
+          { id: 4, title: 'b', valid: false },
+          { id: 1, title: 'b', valid: false },
         ],
       ]);
     });
