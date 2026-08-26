@@ -1,0 +1,7 @@
+minimumReleaseAge: 3 days
+
+packages:
+  - "."
+
+allowBuilds:
+  unrs-resolver: true

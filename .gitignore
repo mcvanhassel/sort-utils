@@ -5,6 +5,10 @@
 # dependencies
 /node_modules
 
+# pnpm
+.pnpm-store
+pnpm-debug.log
+
 # System Files
 .DS_Store
 Thumbs.db
